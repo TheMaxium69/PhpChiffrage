@@ -15,7 +15,9 @@ if(isset($_POST['formlogin'])){
 
         if ($numRows == 1) {
             foreach ($result as $value) {
-                if ($passwordForm == $value['password']) {
+
+                require_once "auth/salt.php";
+                if (md5($passwordForm).md5($salt) == $value['password']) {
                     echo "On revele la phrase" . "<hr>";
                     $isLogged = true;
                 } else {

@@ -26,8 +26,11 @@
                         if($retourRequeteCheckUsername->num_rows == 0){
 
                             echo "on peut l'inscrire";
+                            $passwordEntreCrypte = md5($passwordEntre);
+                            require_once "auth/salt.php";
+                            $passwordEntreCrypteSaleCrypte = $passwordEntreCrypte.md5($salt);
 
-                            $maRequeteInscription = "INSERT INTO users (username, password) VALUES ('$usernameEntre', '$passwordEntre')";
+                            $maRequeteInscription = "INSERT INTO users (username, password) VALUES ('$usernameEntre', '$passwordEntreCrypteSaleCrypte')";
                             $resultatInscription = mysqli_query($maConnection, $maRequeteInscription);
                        
                                 header("location: index.php?info=registered");

@@ -27,7 +27,9 @@ if(isset($_POST['formSign'])){
 
                     $pass = $passwordSign;
                     require_once "auth/hash.php";
-                    $requete = "INSERT INTO userscrypt(username,password) VALUES ('$usernameSign','$passCrypt')";
+                    require_once "auth/salt.php";
+                    $passCryptSalt = $passCrypt.md5($salt);
+                    $requete = "INSERT INTO userscrypt(username,password) VALUES ('$usernameSign','$passCryptSalt')";
 
                     require_once "auth/db.php";
                     $result = mysqli_query($db, $requete);

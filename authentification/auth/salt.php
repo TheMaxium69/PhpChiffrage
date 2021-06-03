@@ -1,0 +1,7 @@
+<?php 
+
+
+$salt = "concombre";
+
+
+?>

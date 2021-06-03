@@ -21,6 +21,8 @@ echo "login fonctionnel";
         
                 $maRequete = "SELECT * FROM users WHERE username = '$usernameEntre'";
 
+                
+
                 $leResultatDeMaRequeteLogin = mysqli_query($maConnection, $maRequete);
                     if(  $leResultatDeMaRequeteLogin->num_rows == 1){
 
@@ -30,8 +32,8 @@ echo "login fonctionnel";
                                 $vraiMotDePasse =  $value['password'];
                                 
                        }
-
-                        if( $passwordEntre == $vraiMotDePasse  ){
+                        require_once "auth/salt.php";
+                        if( md5($passwordEntre).md5($salt) == $vraiMotDePasse  ){
 
                             // echo "bon mot de passe";
                             $isLoggedIn = true;
