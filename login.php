@@ -6,7 +6,7 @@ if(isset($_POST['formlogin'])){
         $usernameForm = $_POST['username'];
         $passwordForm = $_POST['password'];
 
-        $requete = "SELECT * FROM users WHERE username='$usernameForm'";
+        $requete = "SELECT * FROM userscrypt WHERE username='$usernameForm'";
 
         require_once "auth/db.php";
         $result = mysqli_query($db, $requete);

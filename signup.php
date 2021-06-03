@@ -15,7 +15,7 @@ if(isset($_POST['formSign'])){
 
                 echo "<hr>";
 
-                $requete = "SELECT * FROM users WHERE username='$usernameSign'";
+                $requete = "SELECT * FROM userscrypt WHERE username='$usernameSign'";
 
                 require_once "auth/db.php";
                 $result = mysqli_query($db, $requete);
@@ -24,7 +24,10 @@ if(isset($_POST['formSign'])){
                 if ($numRows == 0){
                     echo "GOOD";
 
-                    $requete = "INSERT INTO users(username,password) VALUES ('$usernameSign','$passwordSign')";
+
+                    $pass = $passwordSign;
+                    require_once "auth/hash.php";
+                    $requete = "INSERT INTO userscrypt(username,password) VALUES ('$usernameSign','$passCrypt')";
 
                     require_once "auth/db.php";
                     $result = mysqli_query($db, $requete);
